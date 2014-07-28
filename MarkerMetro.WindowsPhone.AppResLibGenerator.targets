@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AppResLibGenerator>$(MSBuildThisFileDirectory)\AppResLibGenerator.exe</AppResLibGenerator>
+    <LocaleCSV>$(MSBuildThisFileDirectory)\LocaleMappings.csv</LocaleCSV>
   </PropertyGroup>
 
   <Target Name="CheckPrerequisites">
@@ -24,6 +25,7 @@
     <AppResLibGenerator.Generator
           ResXFileName="%(EmbeddedResource.Identity)"
           Condition="'%(Extension)'=='.resx'"
+          LocaleMappingsFileName="$(LocaleCSV)"
           Resource100Key="ApplicationDisplayName"
           Resource101Key="ApplicationDescription"
           Resource102Key="ApplicationTileTitle">

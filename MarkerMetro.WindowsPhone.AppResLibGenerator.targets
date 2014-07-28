@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <AppResLibGenerator>$(MSBuildProjectDirectory)\AppResLibGenerator.exe</AppResLibGenerator>
+    <AppResLibGenerator>$(MSBuildThisFileDirectory)\AppResLibGenerator.exe</AppResLibGenerator>
   </PropertyGroup>
 
   <Target Name="CheckPrerequisites">
@@ -19,20 +19,23 @@
           Outputs="@(AppResLibDlls)"
           DependsOnTargets="CheckPrerequisites"
           BeforeTargets="PrepareForBuild">
-    <Message Text="Generating AppResLib.dll files..." Importance="high"/>
+    <Message Text="Generating AppResLib.dll files..." />
 
     <AppResLibGenerator.Generator
           ResXFileName="%(EmbeddedResource.Identity)"
-          Condition="'%(Extension)'=='.resx'">
+          Condition="'%(Extension)'=='.resx'"
+          Resource100Key="ApplicationDisplayName"
+          Resource101Key="ApplicationDescription"
+          Resource102Key="ApplicationTileTitle">
       <Output TaskParameter="AppResLibFileName" ItemName="GeneratedAppResLibFiles"/>
     </AppResLibGenerator.Generator>
 
-    <Message Text="Generated: @(GeneratedAppResLibFiles)" Importance="high"/>
+    <Message Text="Generated: @(GeneratedAppResLibFiles)" />
   </Target>
   
   <Target Name="CleanAppResLibDlls"
           AfterTargets="Clean">
-    <Message Text="Cleaning: @(AppResLibDlls)" Importance="high"/>
+    <Message Text="Cleaning: @(AppResLibDlls)" />
     <Delete Files="@(AppResLibDlls)"/>
   </Target>
   <UsingTask AssemblyFile="$(AppResLibGenerator)" TaskName="AppResLibGenerator.Generator" />

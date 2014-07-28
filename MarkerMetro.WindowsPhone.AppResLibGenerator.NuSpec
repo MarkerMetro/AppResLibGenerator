@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>MarkerMetro.WindowsPhone.AppResLibGenerator</id>
+    <version>$version$</version>
+    <title>MarkerMetro's Unity WinIntegration Library</title>
+    <description>MarkerMetro's Unity Windows Integration Library to help with porting Unity projects to Windows 8 and Windows Phone 8</description>
+    <authors>MarkerMetro</authors>
+    <owners>MarkerMetro</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright MarkerMetro© 2014</copyright>
+    <projectUrl>https://github.com/MarkerMetro/AppResLibGenerator/</projectUrl>
+    <dependencies/>
+  </metadata>
+  <files>
+    <file src="readme.txt" target=""/>
+    <file src="AppResLib.props" target="build\windowsphone8"/>
+    <file src="AppResLib.targets" target="build\windowsphone8"/>
+    <file src="AppResLibGenerator\bin\Release\AppResLibGenerator.exe" target="build\windowsphone8"/>
+    <file src="AppResLibGenerator\bin\Release\LocaleMappings.csv" target="build\windowsphone8"/>
+  </files>
+</package>

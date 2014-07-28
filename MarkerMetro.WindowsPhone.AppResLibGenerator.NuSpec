@@ -3,8 +3,8 @@
   <metadata>
     <id>MarkerMetro.WindowsPhone.AppResLibGenerator</id>
     <version>$version$</version>
-    <title>MarkerMetro's Unity WinIntegration Library</title>
-    <description>MarkerMetro's Unity Windows Integration Library to help with porting Unity projects to Windows 8 and Windows Phone 8</description>
+    <title>AppResLib Generator</title>
+    <description>Helps with localization of Windows Phone 8 Silverlight projects, by auto-generating from .resx files and including AppResLib.dll and .mui files.</description>
     <authors>MarkerMetro</authors>
     <owners>MarkerMetro</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AppResLibGenerator>$(MSBuildProjectDirectory)\AppResLibGenerator.exe</AppResLibGenerator>
+  </PropertyGroup>
+
+  <Target Name="CheckPrerequisites">
+    <!-- Raise an error if we're unable to locate nuget.exe  -->
+    <Error Condition="'$(AppResLibGenerator)' != 'true' AND !Exists('$(AppResLibGenerator)')" Text="Unable to locate '$(AppResLibGenerator)'" />
+  </Target>
+
+  <ItemGroup>
+    <AppResLibDlls Include="$(MSBuildProjectDirectory)\AppResLib.dll"/>
+    <AppResLibDlls Include="$(MSBuildProjectDirectory)\AppResLib.dll.*.mui"/>
+  </ItemGroup>
+
+  <Target Name="GenerateAppResLibDlls"
+          Inputs="@(EmbeddedResource)"
+          Outputs="@(AppResLibDlls)"
+          DependsOnTargets="CheckPrerequisites"
+          BeforeTargets="PrepareForBuild">
+    <Message Text="Generating AppResLib.dll files..." Importance="high"/>
+
+    <AppResLibGenerator.Generator
+          ResXFileName="%(EmbeddedResource.Identity)"
+          Condition="'%(Extension)'=='.resx'">
+      <Output TaskParameter="AppResLibFileName" ItemName="GeneratedAppResLibFiles"/>
+    </AppResLibGenerator.Generator>
+
+    <Message Text="Generated: @(GeneratedAppResLibFiles)" Importance="high"/>
+  </Target>
+  
+  <Target Name="CleanAppResLibDlls"
+          AfterTargets="Clean">
+    <Message Text="Cleaning: @(AppResLibDlls)" Importance="high"/>
+    <Delete Files="@(AppResLibDlls)"/>
+  </Target>
+  <UsingTask AssemblyFile="$(AppResLibGenerator)" TaskName="AppResLibGenerator.Generator" />
+</Project>

@@ -14,8 +14,8 @@
   </metadata>
   <files>
     <file src="readme.txt" target=""/>
-    <file src="AppResLib.props" target="build\windowsphone8"/>
-    <file src="AppResLib.targets" target="build\windowsphone8"/>
+    <file src="MarkerMetro.WindowsPhone.AppResLibGenerator.props" target="build\windowsphone8"/>
+    <file src="MarkerMetro.WindowsPhone.AppResLibGenerator.targets" target="build\windowsphone8"/>
     <file src="AppResLibGenerator\bin\Release\AppResLibGenerator.exe" target="build\windowsphone8"/>
     <file src="AppResLibGenerator\bin\Release\LocaleMappings.csv" target="build\windowsphone8"/>
   </files>

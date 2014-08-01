@@ -41,7 +41,7 @@ namespace AppResLibGenerator.Test
 
             var actual = target.GetAppResLibFileName("AppResources.resx");
 
-            Assert.AreEqual("AppResLib.dll", actual);
+            Assert.AreEqual("AppResLib.dll", actual.Item1);
         }
 
         [TestMethod, ExpectedException(typeof(ApplicationException))]
@@ -68,7 +68,7 @@ namespace AppResLibGenerator.Test
 
             var actual = target.GetAppResLibFileName("AppResources.en-US.resx");
 
-            Assert.AreEqual("AppResLib.dll.0409.mui", actual);
+            Assert.AreEqual("AppResLib.dll.0409.mui", actual.Item1);
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace AppResLibGenerator.Test
 
             var actual = target.GetAppResLibFileName("AppResources.de.resx");
 
-            Assert.AreEqual("AppResLib.dll.0407.mui", actual);
+            Assert.AreEqual("AppResLib.dll.0407.mui", actual.Item1);
         }
 
     }

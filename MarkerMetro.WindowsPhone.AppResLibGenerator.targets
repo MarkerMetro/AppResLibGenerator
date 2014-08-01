@@ -31,9 +31,12 @@
           Resource101Key="ApplicationDescription"
           Resource102Key="ApplicationTileTitle">
       <Output TaskParameter="AppResLibFileName" ItemName="GeneratedAppResLibFiles"/>
+      <Output TaskParameter="Locale" ItemName="GeneratedAppResLocales"/>
     </AppResLibGenerator.Generator>
 
-    <Message Text="Generated: @(GeneratedAppResLibFiles)" />
+    <Message Text="Generated: @(GeneratedAppResLibFiles)" Condition="'@(GeneratedAppResLibFiles)'!=''" />
+    <Message Text="AppResLib.dll and .mui generated for: @(GeneratedAppResLocales)" Importance="High" Condition="'@(GeneratedAppResLocales)'!=''"/>
+    <Warning Text="No AppResLib.dll generated as no EmbededResource .resx files were found in the project" Condition="'@(GeneratedAppResLocales)'==''"/>
   </Target>
   
   <Target Name="CleanAppResLibDlls"

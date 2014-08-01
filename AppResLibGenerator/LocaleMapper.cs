@@ -33,7 +33,7 @@ namespace AppResLibGenerator
             }
         }
 
-        public string GetAppResLibFileName(string resxFileName)
+        public Tuple<string, string> GetAppResLibFileName(string resxFileName)
         {
             if (string.IsNullOrWhiteSpace(resxFileName) ||
                 !Path.GetExtension(resxFileName).Equals(".resx", StringComparison.OrdinalIgnoreCase))
@@ -44,7 +44,7 @@ namespace AppResLibGenerator
 
             var languageCode = Path.GetExtension(Path.GetFileNameWithoutExtension(resxFileName)).TrimStart('.');
             if (string.IsNullOrEmpty(languageCode))
-                return "AppResLib.dll";
+                return Tuple.Create("AppResLib.dll", "neutral");
 
             var mapping = Mappings.FirstOrDefault(m => m.Item2.Equals(languageCode, StringComparison.OrdinalIgnoreCase));
 
@@ -58,7 +58,7 @@ namespace AppResLibGenerator
             if(mapping==null)
                 throw new ApplicationException(string.Format("Mapping not found for the language {0}. You can edit LocaleMappings.csv to add mapping for it.", languageCode));
 
-            return mapping.Item3;
+            return Tuple.Create(mapping.Item3, mapping.Item2);
         }
 
     }

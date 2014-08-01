@@ -50,6 +50,9 @@ namespace AppResLibGenerator
 
         public bool WarnOnMappingNotFound { get; set; }
 
+        [Output]
+        public string Locale { get; set; }
+
         public void Run()
         {
             if (string.IsNullOrWhiteSpace(ResourceNotFoundValue))
@@ -184,12 +187,14 @@ namespace AppResLibGenerator
             var localeMapper = new LocaleMapper();
             localeMapper.Parse(LocaleMappingsFileName);
 
-            var fileName = localeMapper.GetAppResLibFileName(ResXFileName);
+            var tuple = localeMapper.GetAppResLibFileName(ResXFileName);
 
             if (string.IsNullOrWhiteSpace(OutputDirectory))
-                AppResLibFileName = fileName;
+                AppResLibFileName = tuple.Item1;
             else
-                AppResLibFileName = Path.Combine(OutputDirectory, fileName);
+                AppResLibFileName = Path.Combine(OutputDirectory, tuple.Item1);
+
+            Locale = tuple.Item2;
         }
     }
 }

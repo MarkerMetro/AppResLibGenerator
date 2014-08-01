@@ -26,6 +26,7 @@
           ResXFileName="%(EmbeddedResource.Identity)"
           Condition="'%(Extension)'=='.resx'"
           LocaleMappingsFileName="$(LocaleCSV)"
+          WarnOnMappingNotFound="true"
           Resource100Key="ApplicationDisplayName"
           Resource101Key="ApplicationDescription"
           Resource102Key="ApplicationTileTitle">

@@ -22,6 +22,7 @@ namespace AppResLibGenerator
             Resource102Key = "ApplicationTileTitle";
 
             ResourceNotFoundValue = "<RESOURCE NOT FOUND>";
+            WarnOnMappingNotFound = true;
         }
 
         [Required]
@@ -47,6 +48,8 @@ namespace AppResLibGenerator
 
         public string ResourceNotFoundValue { get; set; }
 
+        public bool WarnOnMappingNotFound { get; set; }
+
         public void Run()
         {
             if (string.IsNullOrWhiteSpace(ResourceNotFoundValue))
@@ -66,14 +69,25 @@ namespace AppResLibGenerator
             {
                 Run();
 
+                var notFound = new List<string>();
                 if (Resource100Value == ResourceNotFoundValue)
-                    Log.LogWarning("", "", "", ResXFileName, 1, 1, 1, 1, "Resource string '{0}' was not found", Resource100Key);
+                    notFound.Add(Resource100Key);
                 if (Resource101Value == ResourceNotFoundValue)
-                    Log.LogWarning("", "", "", ResXFileName, 1, 1, 1, 1, "Resource string '{0}' was not found", Resource101Key);
+                    notFound.Add(Resource101Key);
                 if (Resource102Value == ResourceNotFoundValue)
-                    Log.LogWarning("", "", "", ResXFileName, 1, 1, 1, 1, "Resource string '{0}' was not found", Resource102Key);
-                
+                    notFound.Add(Resource102Key);
+
+                if (notFound.Any())
+                    Log.LogWarning("", "", "", ResXFileName, 1, 1, 1, 1, "File does not contain resources(s) '{0}' used to generate AppResLibs", string.Join(", ", notFound));
+
                 return true;
+            }
+            catch (ApplicationException ex)
+            {
+                if (WarnOnMappingNotFound)
+                    Log.LogWarningFromException(ex);
+
+                return false;
             }
             catch (Exception ex)
             {
@@ -86,8 +100,8 @@ namespace AppResLibGenerator
         void GenerateAppResLibFile()
         {
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("AppResLibGenerator.AppResLib.bin"))
-                using (var output = new FileStream(AppResLibFileName, FileMode.Create))
-                    stream.CopyTo(output);
+            using (var output = new FileStream(AppResLibFileName, FileMode.Create))
+                stream.CopyTo(output);
 
             UpdateStringTableResource(AppResLibFileName);
         }

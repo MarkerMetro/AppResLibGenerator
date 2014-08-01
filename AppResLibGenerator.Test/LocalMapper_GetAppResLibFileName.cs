@@ -44,7 +44,7 @@ namespace AppResLibGenerator.Test
             Assert.AreEqual("AppResLib.dll", actual);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [TestMethod, ExpectedException(typeof(ApplicationException))]
         public void AppResources_EN_NoMapping_Throw()
         {
             var target = new LocaleMapper()

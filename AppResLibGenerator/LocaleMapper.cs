@@ -56,7 +56,7 @@ namespace AppResLibGenerator
             }
 
             if(mapping==null)
-                throw new ArgumentOutOfRangeException("Mapping not found for the language " + languageCode);
+                throw new ApplicationException(string.Format("Mapping not found for the language {0}. You can edit LocaleMappings.csv to add mapping for it.", languageCode));
 
             return mapping.Item3;
         }

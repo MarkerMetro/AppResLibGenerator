@@ -56,9 +56,22 @@ namespace AppResLibGenerator
         public void Run()
         {
             if (string.IsNullOrWhiteSpace(ResourceNotFoundValue))
-                throw new ArgumentNullException("ResourceNotFoundValue", "Must speicify text to be displayed if resource is not found");
+                throw new ArgumentNullException("ResourceNotFoundValue", "Must specify text to be displayed if resource is not found");
 
-            BuildAppResLibFileName();
+            try
+            {
+                BuildAppResLibFileName();
+            }
+            catch(ApplicationException ex)
+            {
+                if(WarnOnMappingNotFound)
+                {
+                    if (WarnOnMappingNotFound)
+                        Log.LogWarningFromException(ex);
+
+                    return;
+                }
+            }
 
             Resource100Value = Resource101Value = Resource102Value = ResourceNotFoundValue;
             ReadResouces();
@@ -88,8 +101,12 @@ namespace AppResLibGenerator
             catch (ApplicationException ex)
             {
                 if (WarnOnMappingNotFound)
+                {
                     Log.LogWarningFromException(ex);
 
+                    return true;
+                }
+                
                 return false;
             }
             catch (Exception ex)

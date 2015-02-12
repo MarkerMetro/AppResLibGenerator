@@ -6,6 +6,8 @@ Bulgarian,bg-BG,AppResLib.dll.0402.mui
 Catalan,ca-ES,AppResLib.dll.0403.mui
 Chinese Simplified (PRC),zh-CN,AppResLib.dll.0804.mui
 Chinese Traditional (Taiwan),zh-TW,AppResLib.dll.0404.mui
+Chinese Simplified (PRC),zh-Hans,AppResLib.dll.0804.mui
+Chinese Traditional (Taiwan),zh-Hant,AppResLib.dll.0404.mui
 Croatian,hr-HR,AppResLib.dll.041a.mui
 Czech (Czech Republic),cs-CZ,AppResLib.dll.0405.mui
 Danish (Denmark),da-DK,AppResLib.dll.0406.mui
@@ -35,6 +37,7 @@ Serbian (Latin),sr-Latn-CS,AppResLib.dll.081a.mui
 Slovak,sk-SK,AppResLib.dll.041b.mui
 Slovenian,sl-SI,AppResLib.dll.0424.mui
 Spanish (Mexico),es-MX,AppResLib.dll.080a.mui
+Spanish (Latin America),es-419,AppResLib.dll.080a.mui
 Spanish (Spain),es-ES,AppResLib.dll.0c0a.mui
 Swedish (Sweden),sv-SE,AppResLib.dll.041d.mui
 Thai,th-TH,AppResLib.dll.041e.mui

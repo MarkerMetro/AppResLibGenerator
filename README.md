@@ -9,6 +9,7 @@ It will extract 3 strings from your .resx files:
 - 100 from ApplicationDisplayName
 - 101 from ApplicationDescription
 - 102 from ApplicationTileTitle
+
 These keys are configurable in AppResLib.targets file.
 
 AppResLib.dll and .mui files will be included in your project output.
